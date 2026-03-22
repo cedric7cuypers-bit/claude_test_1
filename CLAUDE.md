@@ -38,6 +38,8 @@ tests/
   tictactoe.spec.js  — 20 Playwright tests for tictactoe
   rpg.spec.js        — 22 Playwright tests for the RPG
 bot.js               — XP grind bot for the RPG (A* pathfinding, Playwright)
+bots/
+  pixel_bot.js       — Visual pixel bot (reads canvas pixels, no game-state JS)
 CLAUDE.md
 package.json / playwright.config.js / jsconfig.json
 ```
@@ -46,6 +48,7 @@ package.json / playwright.config.js / jsconfig.json
 - **`games/rpg.html`** — Canvas-based, tile map (50×35), all game state in `game` object. Enemy spawns validated by `snapToWalkable()` so no NPC lands on a solid tile.
 - **`tests/`** — Run with `npx playwright test`. Uses `file://` URLs, no server needed.
 - **`bot.js`** — Run with `node bot.js`. Reads `game` state directly, A* paths around walls/trees, spams abilities, drinks potions below 35% HP.
+- **`bots/pixel_bot.js`** — Visual pixel bot: detects HP bar, enemies, and cooldowns from raw canvas pixels (no JS game-state reads). Run with `node bots/pixel_bot.js`.
 - **`package.json`** / **`playwright.config.js`** — Playwright setup. Install deps with `npm install` then `npx playwright install chromium`.
 
 ## rpg.html architecture
