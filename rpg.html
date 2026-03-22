@@ -809,6 +809,21 @@ function respawnPlayer() {
 }
 
 // ─── ENEMY DEFINITIONS ───────────────────────────────────────
+function snapToWalkable(col, row) {
+  // Spiral outward from the given tile until a non-solid tile is found
+  for (let r = 0; r <= 10; r++) {
+    for (let dr = -r; dr <= r; dr++) {
+      for (let dc = -r; dc <= r; dc++) {
+        if (Math.abs(dr) !== r && Math.abs(dc) !== r) continue;
+        const c2 = col + dc, r2 = row + dr;
+        if (c2 < 0 || c2 >= COLS || r2 < 0 || r2 >= ROWS) continue;
+        if (!SOLID.has(map[r2][c2])) return { col: c2, row: r2 };
+      }
+    }
+  }
+  return { col, row }; // fallback
+}
+
 function makeEnemy(type, col, row) {
   const defs = {
     wolf:   {name:'Forest Wolf', hp:80,  atk:8,  spd:1.4, aggroR:120, xp:15, gold:3,  color:'#9090a8'},
@@ -816,6 +831,7 @@ function makeEnemy(type, col, row) {
     treant: {name:'Ancient Treant',hp:350,atk:22,spd:0.5, aggroR:80,  xp:80, gold:20, color:'#5a3510',isBoss:true},
   };
   const d=defs[type];
+  ({ col, row } = snapToWalkable(col, row));
   return {
     ...d, type,
     x:col*TW+TW/2, y:row*TH+TH/2,

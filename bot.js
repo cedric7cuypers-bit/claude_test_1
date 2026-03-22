@@ -209,7 +209,25 @@ async function spamAbilities(page) {
       const ec = Math.floor(target.x / TW);
       const er = Math.floor(target.y / TW);
 
-      const found = astar(grid, solidSet, cols, rows, pc, pr, ec, er);
+      // If the enemy's tile is solid (e.g. wolf inside a tree cluster),
+    // spiral outward to find the nearest walkable tile to use as target
+    let tc = ec, tr = er;
+    if (solidSet.has(grid[tr]?.[tc] ?? 0)) {
+      let found2 = false;
+      outer: for (let radius = 1; radius <= 6; radius++) {
+        for (let dr = -radius; dr <= radius; dr++) {
+          for (let dc = -radius; dc <= radius; dc++) {
+            if (Math.abs(dr) !== radius && Math.abs(dc) !== radius) continue;
+            const nc = ec + dc, nr = er + dr;
+            if (nc < 0 || nc >= cols || nr < 0 || nr >= rows) continue;
+            if (!solidSet.has(grid[nr][nc])) { tc = nc; tr = nr; found2 = true; break outer; }
+          }
+        }
+      }
+      if (!found2) { waypoints = []; await sleep(TICK_MS); continue; }
+    }
+
+    const found = astar(grid, solidSet, cols, rows, pc, pr, tc, tr);
       if (found) {
         // Skip first node (current tile), convert to pixel centres
         waypoints = found.slice(1).map(n => ({ x: n.c * TW + TW / 2, y: n.r * TW + TW / 2 }));
