@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "types": ["node"],
+    "checkJs": false
+  },
+  "include": ["tests/**/*.js", "playwright.config.js"]
+}
