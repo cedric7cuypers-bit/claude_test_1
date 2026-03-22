@@ -97,6 +97,16 @@ h1 { color:#f8c93e; font-size:18px; letter-spacing:3px; text-transform:uppercase
 .log-entry.xp { color:#c060ff; }
 .log-entry.sys { color:#f8c93e; }
 
+/* Exit button */
+#exit-btn {
+  position:absolute; top:106px; right:8px; width:120px;
+  background:#1a0a0add; border:1px solid #803a3a; border-radius:4px;
+  color:#ff6060; font-size:11px; font-family:'Segoe UI',sans-serif;
+  letter-spacing:1px; padding:5px 0; cursor:pointer; pointer-events:all;
+  text-align:center; transition:background 0.15s, border-color 0.15s;
+}
+#exit-btn:hover { background:#3a0a0add; border-color:#ff6060; }
+
 /* Zone name */
 #zone-name {
   position:absolute; top:8px; left:50%; transform:translateX(-50%);
@@ -188,6 +198,9 @@ h1 { color:#f8c93e; font-size:18px; letter-spacing:3px; text-transform:uppercase
 
     <!-- Minimap -->
     <canvas id="mm" width="120" height="90"></canvas>
+
+    <!-- Exit button -->
+    <button id="exit-btn" onclick="window.close()">✕ EXIT GAME</button>
 
     <!-- Zone name -->
     <div id="zone-name">Thornwood Hollow</div>
