@@ -15,24 +15,37 @@ Remote: `https://github.com/cedric7cuypers-bit/claude_test_1.git`
 
 All projects are plain HTML/CSS/JS — no build step or package manager. Open any file directly in a browser:
 
-- `tictactoe.html` — open directly in browser
-- `rpg.html` — open directly in browser
-- `project 1/index.html` — open directly in browser (requires `style.css` and `app.js` in the same folder)
+- `games/tictactoe.html` — open directly in browser
+- `games/rpg.html` — open directly in browser
+- `projects/hello-world/index.html` — open directly in browser (requires `style.css` and `app.js` in the same folder)
 
-For `project 1/` specifically, since `app.js` is a separate file, it must be served (not opened as `file://`) to avoid CORS issues in some browsers:
+For `projects/hello-world/` specifically, since `app.js` is a separate file, it must be served (not opened as `file://`) to avoid CORS issues in some browsers:
 ```bash
-npx serve "project 1"
+npx serve "projects/hello-world"
 # or
-python -m http.server 8080 --directory "project 1"
+python -m http.server 8080 --directory "projects/hello-world"
 ```
 
 ## Project structure
 
-- **`tictactoe.html`** — Self-contained two-player Tic Tac Toe. All logic, styles, and markup in one file. State is held in `board[]`, `current`, and `scores` variables; no persistence.
-- **`rpg.html`** — Self-contained top-down 2D RPG ("Thornwood Hollow"). Canvas-based rendering with a tile map (50×35), animated sprite drawing via canvas primitives, entity AI, and WoW-style UI overlaid with HTML/CSS. All game state lives in the `game` object. No build step, no dependencies.
-- **`project 1/`** — Minimal "Hello World" app split across `index.html`, `style.css`, and `app.js`.
-- **`tests/`** — Playwright test suite. `tictactoe.spec.js` (20 tests) and `rpg.spec.js` (22 tests). Run with `npx playwright test`.
-- **`bot.js`** — Automated XP grind bot for the RPG. Uses Playwright to open the game in a visible browser, reads `game` state directly, uses A* pathfinding to navigate to enemies, and spams abilities. Run with `node bot.js`.
+```
+games/
+  tictactoe.html     — Self-contained two-player Tic Tac Toe
+  rpg.html           — Top-down 2D RPG "Thornwood Hollow"
+projects/
+  hello-world/       — Minimal Hello World app (index.html + style.css + app.js)
+tests/
+  tictactoe.spec.js  — 20 Playwright tests for tictactoe
+  rpg.spec.js        — 22 Playwright tests for the RPG
+bot.js               — XP grind bot for the RPG (A* pathfinding, Playwright)
+CLAUDE.md
+package.json / playwright.config.js / jsconfig.json
+```
+
+- **`games/tictactoe.html`** — State held in `board[]`, `current`, `scores`; no persistence.
+- **`games/rpg.html`** — Canvas-based, tile map (50×35), all game state in `game` object. Enemy spawns validated by `snapToWalkable()` so no NPC lands on a solid tile.
+- **`tests/`** — Run with `npx playwright test`. Uses `file://` URLs, no server needed.
+- **`bot.js`** — Run with `node bot.js`. Reads `game` state directly, A* paths around walls/trees, spams abilities, drinks potions below 35% HP.
 - **`package.json`** / **`playwright.config.js`** — Playwright setup. Install deps with `npm install` then `npx playwright install chromium`.
 
 ## rpg.html architecture

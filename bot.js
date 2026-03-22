@@ -7,7 +7,7 @@
 const { chromium } = require('@playwright/test');
 const path = require('path');
 
-const FILE_URL    = 'file:///' + path.resolve(__dirname, 'rpg.html').replace(/\\/g, '/');
+const FILE_URL    = 'file:///' + path.resolve(__dirname, 'games/rpg.html').replace(/\\/g, '/');
 const TW          = 32;
 const MELEE_RANGE = 52;   // px — stop walking, let auto-attack fire
 const POTION_PCT  = 0.35; // drink potion below 35% HP
