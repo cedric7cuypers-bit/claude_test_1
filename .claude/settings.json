@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"CLAUDE.md CHECK: If you added/removed files, changed architecture, or made any structural changes this session — update CLAUDE.md now before stopping.\"}'",
+            "shell": "powershell"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -31,6 +31,9 @@ python -m http.server 8080 --directory "project 1"
 - **`tictactoe.html`** — Self-contained two-player Tic Tac Toe. All logic, styles, and markup in one file. State is held in `board[]`, `current`, and `scores` variables; no persistence.
 - **`rpg.html`** — Self-contained top-down 2D RPG ("Thornwood Hollow"). Canvas-based rendering with a tile map (50×35), animated sprite drawing via canvas primitives, entity AI, and WoW-style UI overlaid with HTML/CSS. All game state lives in the `game` object. No build step, no dependencies.
 - **`project 1/`** — Minimal "Hello World" app split across `index.html`, `style.css`, and `app.js`.
+- **`tests/`** — Playwright test suite. `tictactoe.spec.js` (20 tests) and `rpg.spec.js` (22 tests). Run with `npx playwright test`.
+- **`bot.js`** — Automated XP grind bot for the RPG. Uses Playwright to open the game in a visible browser, reads `game` state directly, uses A* pathfinding to navigate to enemies, and spams abilities. Run with `node bot.js`.
+- **`package.json`** / **`playwright.config.js`** — Playwright setup. Install deps with `npm install` then `npx playwright install chromium`.
 
 ## rpg.html architecture
 
