@@ -387,7 +387,7 @@ const TILE_COLORS = {
   [T.GRASS2]:['#2a5518','#2f5e1c','#265014'],
   [T.DARK_GRASS]:['#1f3d12','#23450f','#1b3810'],
   [T.PATH]:['#7a5c3a','#8a6a42','#6e5232'],
-  [T.TREE]:['#1a3d0e','#1e4810','#16350c'],
+  [T.TREE]:['#0e1a3d','#101e48','#0c1635'],
   [T.WALL]:['#555577','#5a5a7a','#4a4a66'],
   [T.FLOOR]:['#4a4030','#524535','#403828'],
   [T.FLOWERS]:['#2d5a1b','#2d5a1b','#2d5a1b'],
@@ -396,7 +396,7 @@ const TILE_COLORS = {
 
 const TILE_MM = {
   [T.WATER]:'#1a3a6a',[T.GRASS]:'#2d5a1b',[T.GRASS2]:'#295218',
-  [T.DARK_GRASS]:'#1f3d12',[T.PATH]:'#7a5c3a',[T.TREE]:'#0d2208',
+  [T.DARK_GRASS]:'#1f3d12',[T.PATH]:'#7a5c3a',[T.TREE]:'#082208',
   [T.WALL]:'#555577',[T.FLOOR]:'#4a4030',[T.FLOWERS]:'#3a6a1b',[T.SAND]:'#8a7040',
 };
 
@@ -425,9 +425,9 @@ function drawTile(c, r) {
     // Trunk
     ctx.fillStyle='#3d2008'; ctx.fillRect(sx+12,sy+16,8,16);
     // Canopy
-    ctx.fillStyle='#1a5a0a'; ctx.beginPath(); ctx.arc(sx+16,sy+12,13,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#2a7a15'; ctx.beginPath(); ctx.arc(sx+14,sy+10,9,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#3a9020'; ctx.beginPath(); ctx.arc(sx+16,sy+8,6,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#0a2a6a'; ctx.beginPath(); ctx.arc(sx+16,sy+12,13,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#1545a0'; ctx.beginPath(); ctx.arc(sx+14,sy+10,9,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#2060c8'; ctx.beginPath(); ctx.arc(sx+16,sy+8,6,0,Math.PI*2); ctx.fill();
   } else if (t === T.WALL) {
     // Stone bricks
     ctx.strokeStyle='#4a4a60'; ctx.lineWidth=1;
