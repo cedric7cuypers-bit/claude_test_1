@@ -1,0 +1,15 @@
+{
+  "name": "claude-games-tests",
+  "version": "1.0.0",
+  "description": "Playwright tests for tictactoe and Thornwood Hollow RPG",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed",
+    "test:tictactoe": "playwright test tests/tictactoe.spec.js",
+    "test:rpg": "playwright test tests/rpg.spec.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0"
+  }
+}
