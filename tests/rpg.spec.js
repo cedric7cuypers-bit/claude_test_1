@@ -61,8 +61,9 @@ test('HP bar is visible in player frame', async ({ page }) => {
   await expect(page.locator('#pf .hp-fill')).toBeVisible();
 });
 
-test('MP bar is visible in player frame', async ({ page }) => {
-  await expect(page.locator('#pf .mp-fill')).toBeVisible();
+test('MP/Rage bar element exists in player frame', async ({ page }) => {
+  // The rage bar starts at 0% width (hidden) but the element must exist in the DOM
+  await expect(page.locator('#pf .mp-fill')).toBeAttached();
 });
 
 test('action bar is visible', async ({ page }) => {
